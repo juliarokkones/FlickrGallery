@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    background-color: azure;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+#images-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+img {
+    max-width: 100%;
+}
+
+#pagination {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+#loading {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Bestämmer layout för knappar */
+button {
+    padding: 10px 16px;
+    border: 2px solid burlywood;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: bisque;
+    font-size: 16px;
+}
+
+/* Bestämmer layout för input */
+input, select {
+    padding: 10px 16px;
+    border: 2px solid burlywood;
+    border-radius: 5px;
+    font-size: 18px;
+
+}
+

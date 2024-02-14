@@ -2,18 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flickr Gallery</title>
-
-    <script type="text/javascript" src="/flickrGallery.js" ></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="container">
+    <!-- Möjliggör att skriva in text input. -->
+    <div id="canvas-form">
+        <input type="text" id="text-input" placeholder="Skriv söktext...">
+        <!-- Knapp för att ränka ut ordfrekvens -->
+        <button id="search-button">Sök efter bilder</button>
+    </div>
+    <!-- Divs för att kunna skriva ut texten i JavaScript-filen -->
+    <div id="images-container"></div>
+    <div id="pagination"></div>
+    <div id="loading" class="hidden">Loading...</div>
+    <div id="error" class="hidden">Error fetching images</div>
 </div>
-<!-- Möjliggör att skriva in text input. -->
-<div id="canvas-form">
-    <input type="text" id="text-input" placeholder="Skriv in text för att söka efter bilder...">
-    <!-- Knapp för att ränka ut ordfrekvens -->
-    <button onclick="fetchImages()">Sök efter bilder</button>
-    <h1></h1>
-</div>
+<script type="text/javascript" src="/flickrGallery.js" ></script>
 </body>
 </html>
+
+
