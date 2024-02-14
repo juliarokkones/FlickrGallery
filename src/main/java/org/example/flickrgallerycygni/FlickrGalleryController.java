@@ -17,7 +17,8 @@ public class FlickrGalleryController {
     }
 
     @GetMapping ("/json")
-    public String getImages (@RequestParam String text) {
-        return flickrGalleryService.getImages(text);
+    public String getImages (@RequestParam String text, @RequestParam(defaultValue = "1") int page) {
+        return flickrGalleryService.getImages(text, page);
     }
+
 }

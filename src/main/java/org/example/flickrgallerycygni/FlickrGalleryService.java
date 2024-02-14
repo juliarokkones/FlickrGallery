@@ -16,12 +16,15 @@ import java.util.List;
 @Service
 public class FlickrGalleryService {
 
-    public String getImages(String text) {
+    public String getImages(String text, int page) {
         String apiKey = "89a7f2ad2f8260a035683e01e3e62a71";
         String method = "flickr.photos.search";
         String format = "json";
+        String perPage = "10";
 
-        String url = "https://www.flickr.com/services/rest/?format=" + format + "&text=" + text + "&api_key=" + apiKey + "&method=" + method + "&nojsoncallback=1";
+        String url = "https://www.flickr.com/services/rest/?format=" + format + "&text=" + text
+                + "&api_key=" + apiKey + "&method=" + method + "&nojsoncallback=1"
+                + "&page=" + page + "&per_page=" + perPage;
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -40,40 +43,5 @@ public class FlickrGalleryService {
         }
 
         return response;
-    }
-
-    public FlickrAPI testtest(String text) {
-
-        // https://www.flickr.com/services/rest/?format=json&text=tree&api_key=89a7f2ad2f8260a035683e01e3e62a71&nojsoncallback=1&method=flickr.photos.search
-        FlickrAPI flickrAPI = new FlickrAPI("https://www.flickr.com/services/rest/?", "89a7f2ad2f8260a035683e01e3e62a71", "flickr.photos.search", "json", text);
-
-
-        String urlEndPoint = "https://www.flickr.com/services/rest/?";
-        String apiKey = "api_key=89a7f2ad2f8260a035683e01e3e62a71&";
-        String method = "method=flickr.photos.search&";
-        String format = "format=json&";
-        text= "text=" + text;
-
-        String url = urlEndPoint + apiKey + method + format;
-
-
-
-       // format=" + format + "&text=" + text + "&api_key=" + apiKey + "&method=" + method + "/";
-        // nojsoncallback=1
-
-
-        RestTemplate restTemplate = new RestTemplate(); // Skapa en RestTemplate
-
-// Lägg till en message converter för att kunna hantera JSON på rätt sätt
-        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-        messageConverters.add(converter);
-        restTemplate.setMessageConverters(messageConverters);
-
-        // Gör en GET-begäran till den externa API:et med den dynamiska URL:en
-        FlickrAPI result = restTemplate.getForObject(url, FlickrAPI.class);
-        System.out.println(result);
-        return result;
     }
 }

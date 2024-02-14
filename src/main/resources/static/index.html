@@ -10,12 +10,16 @@
 <div class="container">
     <!-- Möjliggör att skriva in text input. -->
     <div id="canvas-form">
-        <input type="text" id="text-input" placeholder="Skriv söktext...">
-        <!-- Knapp för att ränka ut ordfrekvens -->
-        <button id="search-button">Sök efter bilder</button>
+        <input type="text" id="text-input" placeholder="Enter search text...">
+        <!-- Knapp för att visa bilder -->
+        <button id="search-button">Search for images</button>
     </div>
     <!-- Divs för att kunna skriva ut texten i JavaScript-filen -->
-    <div id="images-container"></div>
+    <!-- Separate gallery section -->
+    <div id="gallery">
+        <div id="images-container"></div>
+    </div>
+    <!-- Pagination section -->
     <div id="pagination"></div>
     <div id="loading" class="hidden">Loading...</div>
     <div id="error" class="hidden">Error fetching images</div>
@@ -23,5 +27,4 @@
 <script type="text/javascript" src="/flickrGallery.js" ></script>
 </body>
 </html>
-
 

@@ -17,11 +17,16 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center; /* Center the images on larger screens */
+    width: 100%; /* Ensure the container fills the width of its parent */
+    overflow: hidden; /* Prevent images from affecting content outside the container */
 }
 
 img {
     max-width: 100%;
+    height: auto; /* Preserve aspect ratio */
 }
+
 
 #pagination {
     margin-top: 20px;
@@ -52,6 +57,46 @@ input, select {
     border: 2px solid burlywood;
     border-radius: 5px;
     font-size: 18px;
-
 }
 
+.pagination-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    justify-content: center;
+}
+.pagination-number,
+.pagination-button{
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+}
+.pagination-number:hover,
+.pagination-button:not(.disabled):hover {
+    background: #fff;
+}
+.pagination-number.active {
+    color: #fff;
+    background: #0085b6;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    #images-container {
+        gap: 5px;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
