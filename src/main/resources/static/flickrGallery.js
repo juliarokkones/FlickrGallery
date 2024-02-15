@@ -72,13 +72,23 @@ function displayImages(rsp) {
 
 // Funktion för att skapa pagination
 function renderPagination() {
-
     // Tömmer paginationContainer
     paginationContainer.innerHTML = "";
 
+    // Anropar renderPreviousButton och renderNextButton
+    renderPreviousButton();
+    renderNextButton();
+
+    // Skapar span för att visa vilken sida som visas och lägger till i paginationContainer
+    const currentPageSpan = document.createElement("span");
+    currentPageSpan.innerHTML = `Page ${currentPage} of ${totalPages}`;
+    paginationContainer.appendChild(currentPageSpan);
+}
+
+// Funktion för att skapa tillbaka-knapp
+function renderPreviousButton(){
     // Skapar knappar för att bläddra mellan sidor och lägger till i paginationContainer
     // Vid klick på knapparna anropas fetchImages efter att currentPage uppdaterats
-    // Bakåtknapp
     const prevButton = document.createElement("button");
     prevButton.innerHTML = "Previous";
     prevButton.onclick = function () {
@@ -90,8 +100,12 @@ function renderPagination() {
         }
     };
     paginationContainer.appendChild(prevButton);
+}
 
-    // Framåtknapp
+// Funktion för att skapa nästa-knapp
+function renderNextButton() {
+    // Skapar knappar för att bläddra mellan sidor och lägger till i paginationContainer
+    // Vid klick på knapparna anropas fetchImages efter att currentPage uppdaterats
     const nextButton = document.createElement("button");
     nextButton.innerHTML = "Next";
     nextButton.onclick = function () {
@@ -103,11 +117,6 @@ function renderPagination() {
         }
     };
     paginationContainer.appendChild(nextButton);
-
-    // Skapar span för att visa vilken sida som visas och lägger till i paginationContainer
-    const currentPageSpan = document.createElement("span");
-    currentPageSpan.innerHTML = `Page ${currentPage} of ${totalPages}`;
-    paginationContainer.appendChild(currentPageSpan);
 }
 
 // Funktion för att hantera laddning
