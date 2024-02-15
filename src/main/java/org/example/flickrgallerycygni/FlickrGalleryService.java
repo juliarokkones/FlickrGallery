@@ -1,47 +1,49 @@
 package org.example.flickrgallerycygni;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+// Serviceklass som hanterar logiken för att hämta bilder från Flickr API
 @Service
 public class FlickrGalleryService {
 
-    public String getImages(String text, int page) {
-        String apiKey = "89a7f2ad2f8260a035683e01e3e62a71";
-        String method = "flickr.photos.search";
-        String format = "json";
-        String perPage = "10";
+    // Metod som hämtar bilder från Flickr API
+    // Skickar med en söksträng och ett sidnummer
+    public String getFlickrAPI(String text, int page) {
 
-        String url = "https://www.flickr.com/services/rest/?format=" + format + "&text=" + text
-                + "&api_key=" + apiKey + "&method=" + method + "&nojsoncallback=1"
-                + "&page=" + page + "&per_page=" + perPage;
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        // Make a GET request to the Flickr API
-        String response = restTemplate.getForObject(url, String.class);
-
-        // Check if the response is valid JSON
+        // Försöker att hämta bilder från Flickr API
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(response);
 
-            // Do something with the JSON response
-            System.out.println(jsonNode.toString());
-        } catch (JsonProcessingException e) {
+            // Skapar ett objekt av klassen FlickrAPI och definierar parametrar och URL
+            FlickrAPI flickrAPIobj = new FlickrAPI("https://www.flickr.com/services/rest/?",
+                    "89a7f2ad2f8260a035683e01e3e62a71",
+                    "flickr.photos.search",
+                    "json",
+                    text,
+                    page,
+                    10);
+
+            // Skapar ett objekt av klassen RestTemplate för att göra en GET-förfrågan
+            RestTemplate restTemplate = new RestTemplate();
+
+            // Skapar en URL-sträng med parametrar för att göra en GET-förfrågan till Flickr API
+            String url = flickrAPIobj.getUrlEndpoint() + "format=" + flickrAPIobj.getFormat() + "&text=" + flickrAPIobj.text
+                    + "&api_key=" + flickrAPIobj.getApiKey() + "&method=" + flickrAPIobj.getMethod() + "&nojsoncallback=1"
+                    + "&page=" + flickrAPIobj.page + "&per_page=" + flickrAPIobj.perPage;
+
+            // Gör en GET-förfrågan till Flickr API och sparar svaret i en sträng
+            String response = restTemplate.getForObject(url, String.class);
+
+            // Skriver ut responsen
+            System.out.println(response);
+
+            // returnerar svaret som är en JSON-sträng med bilder
+            return response;
+
+            // Fångar upp eventuella fel och skriver ut dem
+        } catch (Exception e) {
             e.printStackTrace();
+            return "Error";
         }
-
-        return response;
     }
 }

@@ -1,29 +1,35 @@
+<!-- Skapar en enkel webbsida med en input och en knapp för att kunna söka efter bilder. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Möjliggör att webbsidan ska kunna anpassa sig efter olika skärmstorlekar. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titel på webbsidan. -->
     <title>Flickr Gallery</title>
+    <!-- Länkar till styles.css för att kunna styla webbsidan. -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!-- Container för att kunna centrera innehållet på webbsidan. -->
 <div class="container">
     <!-- Möjliggör att skriva in text input. -->
     <div id="canvas-form">
         <input type="text" id="text-input" placeholder="Enter search text...">
-        <!-- Knapp för att visa bilder -->
+        <!-- Knapp för att söka efter bilder -->
         <button id="search-button">Search for images</button>
     </div>
-    <!-- Divs för att kunna skriva ut texten i JavaScript-filen -->
-    <!-- Separate gallery section -->
+    <!-- Container för att kunna visa bilder. -->
     <div id="gallery">
         <div id="images-container"></div>
     </div>
-    <!-- Pagination section -->
+    <!-- Container för att kunna visa paginering. -->
     <div id="pagination"></div>
+    <!-- Container för att kunna visa loading och error meddelanden. -->
     <div id="loading" class="hidden">Loading...</div>
     <div id="error" class="hidden">Error fetching images</div>
 </div>
+<!-- Länkar till flickrGallery.js för att kunna använda funktionerna i filen. -->
 <script type="text/javascript" src="/flickrGallery.js" ></script>
 </body>
 </html>

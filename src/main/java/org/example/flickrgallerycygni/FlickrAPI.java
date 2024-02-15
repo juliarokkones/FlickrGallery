@@ -1,21 +1,31 @@
 package org.example.flickrgallerycygni;
 
+// Objektsklass som representerar en förfrågan till Flickr API
 public class FlickrAPI {
 
+    // Instansvariabler motsvarande ur och parametrar i Flickr API
     String urlEndpoint;
     String apiKey;
     String method;
     String format;
     String text;
 
-    public FlickrAPI(String urlEndpoint, String apiKey, String method, String format, String text) {
+    int page;
+
+    int perPage;
+
+    // Konstruktor
+    public FlickrAPI(String urlEndpoint, String apiKey, String method, String format, String text, int page, int perPage) {
         this.urlEndpoint = urlEndpoint;
         this.apiKey = apiKey;
         this.method = method;
         this.format = format;
         this.text = text;
+        this.page = page;
+        this.perPage = perPage;
     }
 
+    // Getters och setters
     public String getUrlEndpoint() {
         return urlEndpoint;
     }
@@ -54,6 +64,22 @@ public class FlickrAPI {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPerPage() {
+        return perPage;
+    }
+
+    public void setPerPage(int perPage) {
+        this.perPage = perPage;
     }
 
 }
