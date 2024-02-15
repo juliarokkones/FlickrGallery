@@ -1,37 +1,51 @@
+/* CSS fil för att styla sidan */
+
+/* Återställer standardvärden för webbläsaren */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Bestämmer layout för header */
+header {
+    background-color: burlywood;
+    padding: 20px 0;
+}
+
+/* Bestämmer layout för body */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-
     background-color: azure;
 }
 
+/* Bestämmer layout för container */
 .container {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
 }
 
+/* Bestämmer layout för image-container */
 #images-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center; /* Center the images on larger screens */
-    width: 100%; /* Ensure the container fills the width of its parent */
-    overflow: hidden; /* Prevent images from affecting content outside the container */
+    justify-content: center; /* Centrerar bilderna */
+    width: 100%; /* Säkerställer att containern fyller upp hela sidan */
+    overflow: hidden; /* Förhindrar att bilderna påverkar innehåll utanför dess container */
 }
 
+/* Bestämmer layout för bilder */
 img {
     max-width: 100%;
-    height: auto; /* Preserve aspect ratio */
+    height: auto; /* Bevarar höjden */
 }
 
-
-#pagination {
-    margin-top: 20px;
-}
-
+/* Bestämmer layout för loading */
 .hidden {
     display: none;
 }
@@ -59,6 +73,10 @@ input, select {
     font-size: 18px;
 }
 
+/* Bestämmer layout för pagination */
+#pagination {
+    margin-top: 20px;
+}
 .pagination-container {
     display: flex;
     align-items: center;
@@ -86,7 +104,7 @@ input, select {
     background: #0085b6;
 }
 
-/* Responsive styles */
+/* Möjliggör för att användas på små skärmar */
 @media screen and (max-width: 768px) {
     .container {
         padding: 10px;

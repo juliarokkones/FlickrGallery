@@ -5,19 +5,19 @@ const API_BASE_URL = "http://localhost:3000";
 // Deklarerar variabler
 let currentPage = 1;
 let totalPages = 0;
-let perPage = 10;
 
 // Deklarera konstanter från HTML
 const imagesContainer = document.getElementById("images-container");
 const paginationContainer = document.getElementById("pagination");
 const loading = document.getElementById("loading");
+const searchButton = document.getElementById("search-button");
 
 // Eventlistener för sökknappen som kallar på fetchImages
-document.getElementById("search-button").addEventListener("click", () => {
+searchButton.addEventListener("click", () => {
     // Hämta texten från inputfältet och skickar alert om fältet är tomt
     const textInput = document.getElementById("text-input").value;
     if (!textInput) {
-        alert("Vänligen skriv in text");
+        alert("Please enter a search term");
         return;
     }
     // Kallar på fetchImages och skickar med currentPage
@@ -26,9 +26,9 @@ document.getElementById("search-button").addEventListener("click", () => {
 
 // Asyncron funktion som hämtar bilder från servern
 async function fetchImages(currentPage) {
-    // Hämtar texten från inputfältet och skapar en URL för att hämta bilder från servern med hjälp av texten, currentPage och perPage
+    // Hämtar texten från inputfältet och skapar en URL för att hämta bilder från servern med hjälp av texten och currentPage
     const textInput = document.getElementById("text-input").value;
-    const url = `${API_BASE_URL}/json?text=${encodeURIComponent(textInput)}&page=${currentPage}&perPage=${perPage}`;
+    const url = `${API_BASE_URL}/json?text=${encodeURIComponent(textInput)}&page=${currentPage}`;
 
     // Visar laddning medan bilder hämtas
     showLoading(true);
@@ -46,7 +46,7 @@ async function fetchImages(currentPage) {
 
             // Felmeddelande visas om svaret inte är ok
         } else {
-            alert("Misslyckades att hämta data från servern");
+            alert("Failed to fetch data. Please try again.");
             console.error(`Failed to fetch data. Status: ${response.status}`);
         }
     } catch (error) {
